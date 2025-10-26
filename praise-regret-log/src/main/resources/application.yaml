@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: praise-regret-log
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/pp}
+    username: ${DB_USER:pp}
+    password: ${DB_PASS:password}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 1
+      connection-timeout: 30000
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/main.yaml
+
+springdoc:
+  swagger-ui:
+    urls:
+      - name: logger
+        url: /oas/logger.yaml
+
+logging:
+  level:
+    root: INFO

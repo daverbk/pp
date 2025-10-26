@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0000-create-pp-schema
+      author: daverbk
+      changes:
+        - sqlFile:
+            path: 0000-create-pp-schema.sql
+            relativeToChangelogFile: true
+
+#  - changeSet:
+#      id: 0001-create-praise-regret-logs
+#      author: daverbk
+#      changes:
+#        - sqlFile:
+#            path: 0001-create-praise-regret-logs.sql
+#            relativeToChangelogFile: true
