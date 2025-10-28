@@ -14,6 +14,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: praise-regret-api
+                name: praise-regret-log
                 port:
                   number: 80
