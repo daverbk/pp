@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: praise-regret-ingress
+  namespace: api
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+    - host: pp.rabko.online
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: praise-regret-api
+                port:
+                  number: 80
