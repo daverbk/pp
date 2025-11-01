@@ -28,6 +28,7 @@ dependencies {
     implementation(group = "org.liquibase", name = "liquibase-core")
 
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-web")
+    implementation(group = "org.springframework.boot", name = "spring-boot-starter-security")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-jdbc")
     implementation(group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin")
 
@@ -47,7 +48,7 @@ tasks {
     val buildDir = layout.buildDirectory.get()
     openApiGenerate {
         generatorName.set("kotlin-spring")
-        inputSpec.set("$oasResourcesDir/logger.yaml")
+        inputSpec.set("$oasResourcesDir/log.yaml")
         outputDir.set("$buildDir/generated")
         apiPackage.set("online.rabko.api")
         modelPackage.set("online.rabko.model")

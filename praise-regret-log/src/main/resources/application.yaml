@@ -21,11 +21,15 @@ spring:
     enabled: true
     change-log: classpath:/db/changelog/main.yaml
 
+clients:
+  api:
+    key: ${CLIENTS_API_KEY:KEY}
+
 springdoc:
   swagger-ui:
     urls:
       - name: logger
-        url: /oas/logger.yaml
+        url: /oas/log.yaml
 
 logging:
   level:
