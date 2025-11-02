@@ -50,8 +50,8 @@ tasks {
         generatorName.set("kotlin-spring")
         inputSpec.set("$oasResourcesDir/log.yaml")
         outputDir.set("$buildDir/generated")
-        apiPackage.set("online.rabko.api")
-        modelPackage.set("online.rabko.model")
+        apiPackage.set("online.rabko.logger.api")
+        modelPackage.set("online.rabko.logger.model")
         library.set("spring-boot")
         configOptions.set(
             mapOf(

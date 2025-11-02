@@ -14,3 +14,11 @@ databaseChangeLog:
         - sqlFile:
             path: 0001-create-praise-regret-logs.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: 0002-create-workout-sleep-log
+      author: daverbk
+      changes:
+        - sqlFile:
+            path: 0002-create-workout-sleep-log.sql
+            relativeToChangelogFile: true

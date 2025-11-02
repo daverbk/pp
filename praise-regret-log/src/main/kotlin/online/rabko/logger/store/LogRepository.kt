@@ -1,6 +1,6 @@
 package online.rabko.logger.store
 
-import online.rabko.model.LogType
+import online.rabko.logger.model.LogType
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
 

@@ -25,6 +25,10 @@ clients:
   api:
     key: ${CLIENTS_API_KEY:KEY}
 
+import:
+  size:
+    max: 50
+
 springdoc:
   swagger-ui:
     urls:
@@ -33,4 +37,4 @@ springdoc:
 
 logging:
   level:
-    root: INFO
+    root: info

@@ -1,8 +1,7 @@
 package online.rabko.logger.api
 
-import online.rabko.api.LoggerApi
+import online.rabko.logger.model.LogRequest
 import online.rabko.logger.store.LogRepository
-import online.rabko.model.LogRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController

@@ -7,6 +7,8 @@ info:
 tags:
   - name: Logger
     description: API to log praise and regret
+  - name: Import
+    description: API to import data from other sources
 
 paths:
   /api/log:
@@ -27,7 +29,51 @@ paths:
         201:
           description: The log was created successfully
         403:
-          description: Not authorized to create a log
+          description: Not authorized to access the API
+        500:
+          description: Things went wrong
+
+  /api/import/sleep:
+    post:
+      tags:
+        - Import
+      summary: Import sleep data
+      operationId: importSleepData
+      security:
+        - bearer: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MetricsImportRequest"
+      responses:
+        201:
+          description: The sleep data was imported successfully
+        403:
+          description: Not authorized to access the API
+        500:
+          description: Things went wrong
+
+  /api/import/workout:
+    post:
+      tags:
+        - Import
+      summary: Import workout data
+      operationId: importWorkoutData
+      security:
+        - bearer: [ ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/WorkoutImportRequest"
+      responses:
+        201:
+          description: The workout data was imported successfully
+        403:
+          description: Not authorized to access the API
         500:
           description: Things went wrong
 
@@ -43,7 +89,6 @@ components:
           $ref: "#/components/schemas/LogType"
           example: PRAISE
 
-
     LogType:
       type: string
       nullable: false
@@ -51,6 +96,125 @@ components:
       enum:
         - PRAISE
         - REGRET
+
+    MetricsImportRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            metrics:
+              type: array
+              items:
+                $ref: '#/components/schemas/Metric'
+          required:
+            - metrics
+      required:
+        - data
+
+    Metric:
+      type: object
+      properties:
+        name:
+          type: string
+          example: sleep_analysis
+        units:
+          type: string
+          example: hr
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Sleep'
+      required:
+        - name
+        - units
+        - data
+
+    Sleep:
+      type: object
+      properties:
+        deep:
+          type: number
+          format: float
+          example: 0.87911565237575107
+        totalSleep:
+          type: number
+          format: float
+          example: 7.2338878070645878
+        sleepStart:
+          type: string
+          pattern: "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [+-]\\d{4}$"
+          example: "2025-10-30 01:12:21 +0300"
+        core:
+          type: number
+          format: float
+          example: 4.5546893577774377
+        date:
+          type: string
+          pattern: "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [+-]\\d{4}$"
+          example: "2025-10-30 01:12:21 +0300"
+        sleepEnd:
+          type: string
+          pattern: "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [+-]\\d{4}$"
+          example: "2025-10-30 01:12:21 +0300"
+        awake:
+          type: number
+          format: float
+          example: 0.21768668360180324
+        rem:
+          type: number
+          format: float
+          example: 1.8000827969113986
+      required:
+        - totalSleep
+        - sleepStart
+        - sleepEnd
+        - date
+
+    WorkoutImportRequest:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            workouts:
+              type: array
+              items:
+                $ref: '#/components/schemas/Workout'
+          required:
+            - workouts
+      required:
+        - data
+
+    Workout:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "85241C4B-9D1A-401D-B126-765E9E2B5B54"
+        name:
+          type: string
+          example: "Traditional Strength Training"
+        start:
+          type: string
+          pattern: "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [+-]\\d{4}$"
+          example: "2025-10-30 01:12:21 +0300"
+        end:
+          type: string
+          pattern: "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [+-]\\d{4}$"
+          example: "2025-10-30 01:12:21 +0300"
+        duration:
+          type: number
+          format: float
+          description: Duration of the workout in seconds
+          example: 1944.3961520195007
+      required:
+        - id
+        - name
+        - start
+        - end
+        - duration
 
   securitySchemes:
     bearer:

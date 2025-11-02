@@ -25,10 +25,18 @@ class SecurityConfiguration() {
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain = http
         .csrf { it.disable() }
         .authorizeHttpRequests { auth ->
-            auth.requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/oas/**").permitAll()
+            auth.requestMatchers(
+                "/swagger-ui/**",
+                "/v3/api-docs/**",
+                "/oas/**",
+                "/error"
+            ).permitAll()
             auth.anyRequest().authenticated()
         }
-        .addFilterBefore(ApiKeyAuthFilter(apiKey), UsernamePasswordAuthenticationFilter::class.java)
+        .addFilterBefore(
+            ApiKeyAuthFilter(apiKey),
+            UsernamePasswordAuthenticationFilter::class.java
+        )
         .build()
 }
 
