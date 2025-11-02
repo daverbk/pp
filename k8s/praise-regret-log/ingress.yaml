@@ -4,8 +4,13 @@ metadata:
   name: praise-regret-ingress
   namespace: api
   annotations:
-    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - pp.rabko.online
+      secretName: pp-rabko-online-tls
   rules:
     - host: pp.rabko.online
       http:
