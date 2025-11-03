@@ -8,9 +8,13 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
 private const val IMPORT_SLEEP_SQL = """
-    insert into sleep_log (total_sleep, date, sleep_end, sleep_start)
+    insert into sleep_log (total_sleep, date, sleep_start, sleep_end)
     values (:totalSleep, :date, :sleepStart, :sleepEnd)
-    on conflict do nothing
+    on conflict (date)
+    do update set
+        total_sleep = excluded.total_sleep,
+        sleep_start = excluded.sleep_start,
+        sleep_end = excluded.sleep_end
 """
 
 private const val IMPORT_WORKOUT_SQL = """

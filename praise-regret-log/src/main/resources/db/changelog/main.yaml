@@ -22,3 +22,11 @@ databaseChangeLog:
         - sqlFile:
             path: 0002-create-workout-sleep-log.sql
             relativeToChangelogFile: true
+
+  - changeSet:
+      id: 0003-update-sleep-log-constraint
+      author: daverbk
+      changes:
+        - sqlFile:
+            path: 0003-update-sleep-log-constraint.sql
+            relativeToChangelogFile: true
