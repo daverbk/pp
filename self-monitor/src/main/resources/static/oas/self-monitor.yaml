@@ -1,11 +1,11 @@
 openapi: 3.0.1
 info:
-  title: Praise & Regret Logger
-  description: A simple rest api to log praise and regret into a database
-  version: 1.0.0
+  title: Self Monitor API
+  description: An API backing self monitoring application
+  version: 2.0.0
 
 tags:
-  - name: Logger
+  - name: Emotion Log
     description: API to log praise and regret
   - name: Import
     description: API to import data from other sources
@@ -14,7 +14,7 @@ paths:
   /api/log:
     post:
       tags:
-        - Logger
+        - Emotion Log
       summary: Create a new log
       operationId: log
       security:

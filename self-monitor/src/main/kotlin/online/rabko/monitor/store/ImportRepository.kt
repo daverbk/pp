@@ -1,7 +1,7 @@
-package online.rabko.logger.store
+package online.rabko.monitor.store
 
-import online.rabko.logger.model.Sleep
-import online.rabko.logger.model.Workout
+import online.rabko.monitor.model.Sleep
+import online.rabko.monitor.model.Workout
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
 import java.time.OffsetDateTime

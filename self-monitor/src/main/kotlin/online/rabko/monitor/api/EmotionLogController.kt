@@ -1,15 +1,15 @@
-package online.rabko.logger.api
+package online.rabko.monitor.api
 
-import online.rabko.logger.model.LogRequest
-import online.rabko.logger.store.LogRepository
+import online.rabko.monitor.model.LogRequest
+import online.rabko.monitor.store.EmotionLogRepository
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class LogController(
-    private val repository: LogRepository
-) : LoggerApi {
+class EmotionLogController(
+    private val repository: EmotionLogRepository
+) : EmotionLogApi {
 
     override fun log(logRequest: LogRequest): ResponseEntity<Unit> {
         repository.insert(logRequest.type)

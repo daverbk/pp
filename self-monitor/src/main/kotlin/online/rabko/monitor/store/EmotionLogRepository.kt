@@ -1,6 +1,6 @@
-package online.rabko.logger.store
+package online.rabko.monitor.store
 
-import online.rabko.logger.model.LogType
+import online.rabko.monitor.model.LogType
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate
 import org.springframework.stereotype.Repository
 
@@ -10,7 +10,7 @@ private const val INSERT_SQL = """
 """
 
 @Repository
-class LogRepository(
+class EmotionLogRepository(
     private val jdbcTemplate: NamedParameterJdbcTemplate
 ) {
     fun insert(type: LogType) {

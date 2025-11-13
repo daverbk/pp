@@ -5,13 +5,12 @@ spring:
   main:
     banner-mode: off
   application:
-    name: praise-regret-log
+    name: self-monitor
 
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/pp}
     username: ${DB_USER:pp}
     password: ${DB_PASS:password}
-    driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 2
       minimum-idle: 1
@@ -32,8 +31,8 @@ import:
 springdoc:
   swagger-ui:
     urls:
-      - name: logger
-        url: /oas/log.yaml
+      - name: self-monitor
+        url: /oas/self-monitor.yaml
 
 logging:
   level:

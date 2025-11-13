@@ -1,14 +1,14 @@
-package online.rabko.logger
+package online.rabko.monitor
 
-import online.rabko.logger.api.DefaultExceptionHandler
+import online.rabko.monitor.api.DefaultExceptionHandler
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Import
 
 @SpringBootApplication
 @Import(DefaultExceptionHandler::class)
-class PraiseRegretLoggerApplication
+class SelfMonitorApplication
 
 fun main(args: Array<String>) {
-    runApplication<PraiseRegretLoggerApplication>(*args)
+    runApplication<SelfMonitorApplication>(*args)
 }

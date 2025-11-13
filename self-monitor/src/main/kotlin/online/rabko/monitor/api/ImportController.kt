@@ -1,8 +1,8 @@
-package online.rabko.logger.api
+package online.rabko.monitor.api
 
-import online.rabko.logger.model.MetricsImportRequest
-import online.rabko.logger.model.WorkoutImportRequest
-import online.rabko.logger.store.ImportRepository
+import online.rabko.monitor.model.MetricsImportRequest
+import online.rabko.monitor.model.WorkoutImportRequest
+import online.rabko.monitor.store.ImportRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity

@@ -1,4 +1,4 @@
-package online.rabko.logger.configuration
+package online.rabko.monitor.configuration
 
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest

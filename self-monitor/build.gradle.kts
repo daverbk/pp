@@ -31,44 +31,40 @@ dependencies {
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-security")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-jdbc")
     implementation(group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin")
-
-    testImplementation(group = "org.springframework.boot", name = "spring-boot-starter-test")
 }
 
 tasks {
     test {
         useJUnitPlatform()
     }
-
     compileKotlin {
         dependsOn(openApiGenerate)
     }
-
-    val oasResourcesDir = "$projectDir/src/main/resources/static/oas"
-    val buildDir = layout.buildDirectory.get()
-    openApiGenerate {
-        generatorName.set("kotlin-spring")
-        inputSpec.set("$oasResourcesDir/log.yaml")
-        outputDir.set("$buildDir/generated")
-        apiPackage.set("online.rabko.logger.api")
-        modelPackage.set("online.rabko.logger.model")
-        library.set("spring-boot")
-        configOptions.set(
-            mapOf(
-                "useSpringBoot3" to "true",
-                "useSwaggerUI" to "true",
-                "interfaceOnly" to "true",
-                "skipDefaultInterface" to "true",
-                "openApiNullable" to "false",
-                "useTags" to "true"
-            )
-        )
-    }
 }
 
+val oasResourcesDir = "$projectDir/src/main/resources/static/oas"
+val buildDir = layout.buildDirectory.get()
 
 sourceSets {
     main {
         kotlin.srcDir("$buildDir/generated/src/main/kotlin")
     }
+}
+openApiGenerate {
+    generatorName.set("kotlin-spring")
+    inputSpec.set("$oasResourcesDir/self-monitor.yaml")
+    outputDir.set("$buildDir/generated")
+    apiPackage.set("online.rabko.monitor.api")
+    modelPackage.set("online.rabko.monitor.model")
+    library.set("spring-boot")
+    configOptions.set(
+        mapOf(
+            "useSpringBoot3" to "true",
+            "useSwaggerUI" to "true",
+            "interfaceOnly" to "true",
+            "skipDefaultInterface" to "true",
+            "openApiNullable" to "false",
+            "useTags" to "true"
+        )
+    )
 }
