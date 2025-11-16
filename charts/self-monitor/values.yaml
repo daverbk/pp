@@ -1,0 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/daverbk/self-monitor
+  tag: latest
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: pp.rabko.online
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - hosts:
+        - pp.rabko.online
+      secretName: pp-rabko-online-tls
+
+envFrom:
+  - secretRef:
+      name: postgres-credentials
+
+namespace: api
