@@ -2,12 +2,13 @@ plugins {
     id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.6"
     id("org.openapi.generator") version "7.12.0"
+    id("pl.allegro.tech.build.axion-release") version "1.21.0"
     kotlin("jvm") version "1.9.25"
     kotlin("plugin.spring") version "1.9.25"
 }
 
 group = "online.rabko"
-version = "0.1.0"
+version = scmVersion.version
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -50,6 +51,7 @@ sourceSets {
         kotlin.srcDir("$buildDir/generated/src/main/kotlin")
     }
 }
+
 openApiGenerate {
     generatorName.set("kotlin-spring")
     inputSpec.set("$oasResourcesDir/self-monitor.yaml")
@@ -67,4 +69,24 @@ openApiGenerate {
             "useTags" to "true"
         )
     )
+}
+
+scmVersion {
+    repository {
+        directory.set(project.rootProject.file("../").path)
+    }
+
+    tag {
+        prefix = ""
+    }
+
+    nextVersion {
+        suffix = "SNAPSHOT"
+        separator = "-"
+    }
+
+    hooks {
+        post("commit")
+        post("push")
+    }
 }
