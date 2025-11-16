@@ -70,11 +70,11 @@ jobs:
         env:
           KUBECONFIG_DATA: ${{ secrets.KUBECONFIG }}
         run: |
-          echo "${KUBECONFIG_DATA}" > $HOME/.kubeconfig
+          echo "${KUBECONFIG_DATA}" > .kubeconfig
 
       - name: Helm upgrade Self Monitor
         env:
-          KUBECONFIG: $HOME/.kubeconfig
+          KUBECONFIG: .kubeconfig
         run: |
           helm upgrade --install self-monitor ./charts/self-monitor \
             --namespace api
