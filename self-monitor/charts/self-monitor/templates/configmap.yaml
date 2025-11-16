@@ -4,4 +4,4 @@ metadata:
   name: {{ include "self-monitor.fullname" . }}-config
 data:
   application.yaml: |
-{{ .Files.Get "src/main/resources/application.yaml" | indent 4 }}
+{{ .Files.Get "../../../src/main/resources/application.yaml" | indent 4 }}
