@@ -52,6 +52,9 @@ jobs:
   helm-upgrade:
     runs-on: ubuntu-latest
     needs: build-and-push-image
+    defaults:
+      run:
+        working-directory: ./self-monitor
 
     steps:
       - name: Checkout repo
