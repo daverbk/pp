@@ -1,5 +1,4 @@
-
-name: Deploy
+name: Tag
 
 on:
   workflow_dispatch:
@@ -9,13 +8,10 @@ env:
   IMAGE_NAME: ${{ github.repository_owner }}/self-monitor
 
 jobs:
-  build-and-push-image:
+  create-tag:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
+      contents: write
     defaults:
       run:
         working-directory: ./self-monitor
@@ -31,50 +27,8 @@ jobs:
           distribution: 'temurin'
           cache: 'gradle'
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Git user
+        uses: fregante/setup-git-user@v2
 
-      - name: Build image with bootBuildImage
-        run: ./gradlew bootBuildImage --imageName=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-
-      - name: Tag image as latest
-        run: docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-
-      - name: Push Docker images
-        run: |
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-  
-  helm-upgrade:
-    runs-on: ubuntu-latest
-    needs: build-and-push-image
-    defaults:
-      run:
-        working-directory: ./self-monitor
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v3
-
-      - name: Install Helm
-        uses: azure/setup-helm@v3
-
-      - name: Set up kubeconfig
-        env:
-          KUBECONFIG_DATA: ${{ secrets.KUBECONFIG }}
-        run: |
-          echo "${KUBECONFIG_DATA}" > .kubeconfig
-
-      - name: Helm upgrade Self Monitor
-        env:
-          KUBECONFIG: .kubeconfig
-        run: |
-          helm upgrade --install self-monitor ./charts/self-monitor \
-            --namespace api
+      - name: Create tag
+        run: ./gradlew release
