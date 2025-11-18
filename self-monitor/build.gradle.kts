@@ -80,6 +80,7 @@ scmVersion {
         prefix = ""
     }
 
+
     nextVersion {
         suffix = "SNAPSHOT"
         separator = "-"
