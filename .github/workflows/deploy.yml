@@ -3,7 +3,11 @@ name: Deploy
 on:
   push:
     tags:
-      - '**'
+      - '*'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository_owner }}/self-monitor
 
 jobs:
   build-and-push-image:

@@ -3,10 +3,6 @@ name: Tag
 on:
   workflow_dispatch:
 
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository_owner }}/self-monitor
-
 jobs:
   create-tag:
     runs-on: ubuntu-latest
