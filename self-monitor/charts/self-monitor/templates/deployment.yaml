@@ -19,6 +19,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             {{- toYaml .Values.envFrom | nindent 12 }}
+          env:
+            - name: JAVA_OPTS
+              value: {{ .Values.jvmOpts }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
           volumeMounts:
