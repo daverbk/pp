@@ -1,5 +1,13 @@
 replicaCount: 1
 
+resources:
+  requests:
+    cpu: 200m
+    memory: 512Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
 image:
   repository: ghcr.io/daverbk/self-monitor
   tag: latest
