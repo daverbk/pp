@@ -2,6 +2,10 @@ server:
   port: 8080
 
 spring:
+  task:
+    execution:
+      pool:
+        max-size: 10
   main:
     banner-mode: off
   application:
