@@ -3,10 +3,10 @@ replicaCount: 1
 resources:
   requests:
     cpu: 200m
-    memory: 1gi
+    memory: 1Gi
   limits:
     cpu: 500m
-    memory: 1gi
+    memory: 1Gi
 
 image:
   repository: ghcr.io/daverbk/self-monitor
