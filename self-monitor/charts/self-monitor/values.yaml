@@ -3,10 +3,10 @@ replicaCount: 1
 resources:
   requests:
     cpu: 200m
-    memory: 512Mi
+    memory: 1gi
   limits:
     cpu: 500m
-    memory: 512Mi
+    memory: 1gi
 
 jvmOpts: >-
   -Xms512m
