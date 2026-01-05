@@ -20,6 +20,7 @@ kotlin {
 
 repositories {
     mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
@@ -31,6 +32,7 @@ dependencies {
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-web")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-security")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-jdbc")
+    implementation(group = "org.springframework.boot", name = "spring-boot-starter-actuator")
     implementation(group = "com.fasterxml.jackson.module", name = "jackson-module-kotlin")
 }
 
@@ -66,8 +68,8 @@ openApiGenerate {
             "interfaceOnly" to "true",
             "skipDefaultInterface" to "true",
             "openApiNullable" to "false",
-            "useTags" to "true"
-        )
+            "useTags" to "true",
+        ),
     )
 }
 

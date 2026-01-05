@@ -31,8 +31,14 @@ fun readData(files: Array<String>): Map<String, Double> {
                 val columns = line.split(";")
                 val firstEntry = columns[0].trim()
                 when (firstEntry) {
-                    PERIOD_COLUMN -> println(columns[1])
-                    CURRENCY_COLUMN -> println(columns[1])
+                    PERIOD_COLUMN -> {
+                        println(columns[1])
+                    }
+
+                    CURRENCY_COLUMN -> {
+                        println(columns[1])
+                    }
+
                     TABLE_START -> {
                         for (i in columns.indices) {
                             when (columns[i]) {
@@ -48,7 +54,7 @@ fun readData(files: Array<String>): Map<String, Double> {
                     if (sum < 0) {
                         result[columns[categoryColumnIndex]] = result.getOrDefault(
                             columns[categoryColumnIndex],
-                            0.0
+                            0.0,
                         ) + sum
                     }
                 }

@@ -10,5 +10,5 @@ import org.springframework.context.annotation.Import
 class SelfMonitorApplication
 
 fun main(args: Array<String>) {
-    runApplication<SelfMonitorApplication>(*args)
+  runApplication<SelfMonitorApplication>(*args)
 }

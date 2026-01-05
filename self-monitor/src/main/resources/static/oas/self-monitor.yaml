@@ -11,28 +11,6 @@ tags:
     description: API to import data from other sources
 
 paths:
-  /api/log:
-    post:
-      tags:
-        - Emotion Log
-      summary: Create a new log
-      operationId: log
-      security:
-        - bearer: [ ]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/LogRequest"
-      responses:
-        201:
-          description: The log was created successfully
-        403:
-          description: Not authorized to access the API
-        500:
-          description: Things went wrong
-
   /api/import/sleep:
     post:
       tags:

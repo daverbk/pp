@@ -17,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter
 private const val BEARER_PREFIX = "Bearer "
 
 @Configuration
-class SecurityConfiguration() {
+class SecurityConfiguration {
     @Value("\${clients.api.key}")
     private lateinit var apiKey: String
 
@@ -29,7 +29,8 @@ class SecurityConfiguration() {
                 "/swagger-ui/**",
                 "/v3/api-docs/**",
                 "/oas/**",
-                "/error"
+                "/error",
+                "/actuator/**"
             ).permitAll()
             auth.anyRequest().authenticated()
         }

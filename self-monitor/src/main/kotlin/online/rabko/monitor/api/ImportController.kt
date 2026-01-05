@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 class ImportController(
     @Value("\${import.size.max}")
     private var maxImportSize: Int,
-    private val importRepository: ImportRepository
+    private val importRepository: ImportRepository,
 ) : ImportApi {
 
     override fun importSleepData(metricsImportRequest: MetricsImportRequest): ResponseEntity<Unit> {
@@ -34,7 +34,10 @@ class ImportController(
 
     private fun <T> List<T>.validateImportSize(): List<T> =
         this.takeIf { it.size <= maxImportSize }
-            ?: throw TooManyConcurrentImports("Import size exceeds limit: $maxImportSize", )
+            ?: throw TooManyConcurrentImports("Import size exceeds limit: $maxImportSize")
 }
 
-class TooManyConcurrentImports(msg: String) : ApiException(msg, HttpStatus.BAD_REQUEST.value())
+class TooManyConcurrentImports(
+    msg: String,
+) : ApiException(msg, HttpStatus.BAD_REQUEST.value())
+

@@ -38,3 +38,19 @@ envFrom:
       name: postgres-credentials
 
 namespace: api
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
