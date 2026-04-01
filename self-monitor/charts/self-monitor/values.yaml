@@ -9,7 +9,7 @@ resources:
     memory: 1Gi
 
 image:
-  repository: ghcr.io/daverbk/self-monitor
+  repository: ghcr.io/davidrabko/self-monitor
   tag: latest
   pullPolicy: Always
 
